@@ -1,0 +1,47 @@
+TABLE_NAME,COLUMN_NAME,ORDINAL_POSITION,COLUMN_TYPE,IS_NULLABLE,COLUMN_DEFAULT,EXTRA,COLUMN_KEY,CHARACTER_MAXIMUM_LENGTH,NUMERIC_PRECISION,NUMERIC_SCALE,CONSTRAINT_NAME,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+authors,author_id,1,"bigint unsigned",NO,NULL,auto_increment,PRI,NULL,20,0,PRIMARY,NULL,NULL
+authors,author_name,2,varchar(50),NO,NULL,,UNI,50,NULL,NULL,author_name,NULL,NULL
+book_copies,copy_id,1,"bigint unsigned",NO,NULL,auto_increment,PRI,NULL,20,0,PRIMARY,NULL,NULL
+book_copies,book_id,2,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,book_copies_ibfk_1,books,book_id
+book_copies,barcode,3,varchar(50),NO,NULL,,UNI,50,NULL,NULL,barcode,NULL,NULL
+book_copies,status,4,"enum('AVAILABLE','BORROWED','ON_HOLD','LOST','MAINTAINANCE')",NO,AVAILABLE,,,12,NULL,NULL,NULL,NULL,NULL
+book_copies,LAST_STATUS_CHANGE,5,datetime,NO,CURRENT_TIMESTAMP,DEFAULT_GENERATED,,NULL,NULL,NULL,NULL,NULL,NULL
+books,book_id,1,"bigint unsigned",NO,NULL,auto_increment,PRI,NULL,20,0,PRIMARY,NULL,NULL
+books,isbn13,2,char(13),NO,NULL,,UNI,13,NULL,NULL,isbn13,NULL,NULL
+books,title,3,varchar(255),NO,NULL,,,255,NULL,NULL,NULL,NULL,NULL
+books,genre,4,varchar(80),YES,NULL,,,80,NULL,NULL,NULL,NULL,NULL
+books,published_year,5,year,YES,NULL,,,NULL,NULL,NULL,NULL,NULL,NULL
+books,author_id,6,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,FK_BOOKS_AUTHOR,authors,author_id
+books,publisher_id,7,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,FK_BOOKS_PUBLISHER,publisher,publisher_id
+books,total_copies,8,"int unsigned",NO,0,,,NULL,10,0,NULL,NULL,NULL
+books,available_copies,9,"int unsigned",NO,0,,,NULL,10,0,NULL,NULL,NULL
+books,created_at,10,datetime,NO,CURRENT_TIMESTAMP,DEFAULT_GENERATED,,NULL,NULL,NULL,NULL,NULL,NULL
+policy_overrides,user_id,1,"bigint unsigned",NO,NULL,,PRI,NULL,20,0,policy_overrides_ibfk_1,users,user_id
+policy_overrides,user_id,1,"bigint unsigned",NO,NULL,,PRI,NULL,20,0,PRIMARY,NULL,NULL
+policy_overrides,loan_days,2,"int unsigned",YES,NULL,,,NULL,10,0,NULL,NULL,NULL
+policy_overrides,max_loan,3,"int unsigned",YES,NULL,,,NULL,10,0,NULL,NULL,NULL
+policy_overrides,fine_per_day,4,"int unsigned",YES,NULL,,,NULL,10,0,NULL,NULL,NULL
+publisher,publisher_id,1,"bigint unsigned",NO,NULL,auto_increment,PRI,NULL,20,0,PRIMARY,NULL,NULL
+publisher,publisher_name,2,varchar(50),NO,NULL,,UNI,50,NULL,NULL,publisher_name,NULL,NULL
+reservation,reservation_id,1,"bigint unsigned",NO,NULL,auto_increment,PRI,NULL,20,0,PRIMARY,NULL,NULL
+reservation,user_id,2,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,book_id,NULL,NULL
+reservation,user_id,2,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,reservation_ibfk_2,users,user_id
+reservation,book_id,3,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,reservation_ibfk_1,books,book_id
+reservation,book_id,3,"bigint unsigned",NO,NULL,,MUL,NULL,20,0,book_id,NULL,NULL
+reservation,reserved_at,4,datetime,NO,CURRENT_TIMESTAMP,DEFAULT_GENERATED,,NULL,NULL,NULL,NULL,NULL,NULL
+reservation,status,5,"enum('QUEUED','NOTIFIED','FULFILED','CANCELLED','EXPIRED')",NO,QUEUED,,,9,NULL,NULL,book_id,NULL,NULL
+reservation,queue_position,6,"int unsigned",NO,NULL,,,NULL,10,0,NULL,NULL,NULL
+roles,role_id,1,"tinyint unsigned",NO,NULL,auto_increment,PRI,NULL,3,0,PRIMARY,NULL,NULL
+roles,role_code,2,varchar(50),NO,NULL,,UNI,50,NULL,NULL,role_code,NULL,NULL
+roles,role_description,3,varchar(300),NO,NULL,,,300,NULL,NULL,NULL,NULL,NULL
+user_roles,user_id,1,"bigint unsigned",NO,NULL,,PRI,NULL,20,0,user_roles_ibfk_1,users,user_id
+user_roles,user_id,1,"bigint unsigned",NO,NULL,,PRI,NULL,20,0,PRIMARY,NULL,NULL
+user_roles,role_id,2,"tinyint unsigned",NO,NULL,,PRI,NULL,3,0,PRIMARY,NULL,NULL
+user_roles,role_id,2,"tinyint unsigned",NO,NULL,,PRI,NULL,3,0,user_roles_ibfk_2,roles,role_id
+users,user_id,1,"bigint unsigned",NO,NULL,auto_increment,PRI,NULL,20,0,PRIMARY,NULL,NULL
+users,full_name,2,varchar(50),NO,NULL,,,50,NULL,NULL,NULL,NULL,NULL
+users,email,3,varchar(100),NO,NULL,,UNI,100,NULL,NULL,email,NULL,NULL
+users,phone_no,4,varchar(20),NO,NULL,,UNI,20,NULL,NULL,phone_no,NULL,NULL
+users,dept,5,varchar(30),YES,NULL,,,30,NULL,NULL,NULL,NULL,NULL
+users,person_status,6,tinyint(1),NO,1,,,NULL,3,0,NULL,NULL,NULL
+users,created_at,7,datetime,NO,CURRENT_TIMESTAMP,DEFAULT_GENERATED,,NULL,NULL,NULL,NULL,NULL,NULL
