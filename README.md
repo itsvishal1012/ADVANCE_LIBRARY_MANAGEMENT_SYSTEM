@@ -69,8 +69,8 @@ A **MySQL-based Library Management System** designed to handle student/faculty b
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/advanced-library-management.git
-   cd advanced-library-management
+   git clone https://github.com/itsvishal1012/ADVANCE_LIBRARY_MANAGEMENT_SYSTEM.git
+   cd ADVANCE_LIBRARY_MANAGEMENT_SYSTEM
    ```
 
 2. Import schema into MySQL:
@@ -116,18 +116,6 @@ A **MySQL-based Library Management System** designed to handle student/faculty b
   ```sql
   SELECT * FROM v_user_fines_summary;
   ```
-
----
-
-## 📐 Schema Diagram
-
-You can generate the schema diagram using [dbdiagram.io](https://dbdiagram.io).  
-Paste the provided DBML schema file in the tool to view and export the ER diagram.
-
-Example placeholder for GitHub (replace with exported diagram):
-```markdown
-![Schema Diagram](docs/schema-diagram.png)
-```
 
 ---
 
